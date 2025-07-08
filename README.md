@@ -1,18 +1,31 @@
-# Transformer Model for Machine Translation - Educational Implementation
+# Transformer & LLM Educational Implementation
 
-This repository contains a **from-scratch implementation** of the Transformer model for machine translation, designed specifically for **educational purposes**. It faithfully implements the architecture described in the seminal paper ["Attention is All You Need"](https://arxiv.org/abs/1706.03762) by Vaswani et al.
+**Created by Roberto H Luna** - *Open source education for transformer technology*
+
+This repository contains **complete from-scratch implementations** of both **Translation Transformers** and **Large Language Models (LLMs)**, designed specifically for **educational purposes**. Learn how modern AI works by building it yourself!
+
+🔥 **What's Inside:**
+- **Translation Model**: Encoder-decoder transformer (English ↔ Italian)
+- **Language Model**: GPT-style decoder-only transformer for text generation
+- **Attention Visualization**: See what the models actually learn
+- **Educational Examples**: Step-by-step concept explanations
+
+This implementation faithfully follows the architecture from ["Attention is All You Need"](https://arxiv.org/abs/1706.03762) by Vaswani et al., with educational extensions for modern LLM understanding.
 
 ## 🎯 Educational Goals
 
 This implementation helps you understand:
 - **Multi-head attention mechanism** and why it's revolutionary
 - **Positional encoding** and how transformers handle sequence order
-- **Encoder-decoder architecture** for sequence-to-sequence tasks
-- **Training dynamics** of large language models
-- **Attention visualization** to see what the model learns
+- **Encoder-decoder architecture** for sequence-to-sequence tasks (translation)
+- **Decoder-only architecture** for autoregressive generation (LLMs)
+- **Training dynamics** of both translation and language models
+- **Attention visualization** to see what the models learn
+- **Text generation** and sampling strategies
 
 ## 🏗️ Architecture Overview
 
+### Translation Model (Encoder-Decoder)
 ```
 Input Embeddings + Positional Encoding
          ↓
@@ -40,6 +53,22 @@ Input Embeddings + Positional Encoding
     Linear + Softmax
 ```
 
+### Language Model (Decoder-Only, GPT-style)
+```
+Input Embeddings + Positional Encoding
+         ↓
+    Decoder Stack (12+ layers)
+    ┌─────────────────────┐
+    │ Causal Self-Attn    │
+    │ + Residual & Norm   │
+    ├─────────────────────┤
+    │ Feed Forward        │
+    │ + Residual & Norm   │
+    └─────────────────────┘
+         ↓
+    Language Head → Next Token
+```
+
 ## 📁 File Structure
 
 ### Core Model Files
@@ -49,10 +78,17 @@ Input Embeddings + Positional Encoding
   - `FeedForwardBlock` - Position-wise feed-forward networks
   - `PositionalEncoding` - Sinusoidal positional embeddings
   - `EncoderBlock` & `DecoderBlock` - Complete encoder/decoder layers
-  - `Transformer` - Full model combining all components
+  - `Transformer` - Full translation model combining all components
+
+- **`llm_model.py`** - GPT-style language model implementation
+  - `LLMDecoderBlock` - Simplified decoder for language modeling
+  - `LanguageModel` - Complete LLM with text generation
+  - `causal_mask` - Autoregressive attention masking
+  - `build_language_model` - LLM factory function
 
 ### Training & Data
-- **`train.py`** - Main training script with validation
+- **`train.py`** - Translation model training script with validation
+- **`train_llm.py`** - Language model training script with text generation
 - **`dataset.py`** - Bilingual dataset processing and tokenization
 - **`config.py`** - Model and training configurations
 
@@ -73,18 +109,26 @@ Input Embeddings + Positional Encoding
 pip install -r requirements.txt
 ```
 
-### 2. Train the Model
+### 2. Train Models
 ```bash
-# Basic training
+# Translation model training
 python train.py
+
+# Language model training  
+python train_llm.py
 
 # With W&B logging
 python train_wb.py
 ```
 
-### 3. Translate Text
+### 3. Use the Models
 ```bash
+# Translate text (EN ↔ IT)
 python translate.py
+
+# Generate text with LLM
+python -c "from train_llm import generate_text, torch; 
+# Load your trained LLM and generate text"
 ```
 
 ### 4. Visualize Attention (🔥 Cool!)
@@ -199,18 +243,25 @@ Look for these interesting patterns in attention visualizations:
 
 ## 🤝 Contributing
 
-This is an educational project! Contributions that improve learning are welcome:
+This is an educational project by **Roberto H Luna**, created to help more people understand transformer technology through open source learning! Contributions that improve education are welcome:
 - Better documentation and comments
 - Additional visualization tools
-- More educational examples
+- More educational examples  
 - Bug fixes and improvements
+- New model architectures for learning
 
 ## 📄 License
 
 MIT License - Feel free to use for educational purposes!
 
+## 🙏 Acknowledgments
+
+Created by **Roberto H Luna** with the mission of making transformer technology accessible to everyone through open source education. Special thanks to the authors of "Attention is All You Need" and the broader AI research community.
+
 ---
 
 **Happy Learning! 🎉**
 
-*Remember: The goal isn't just to run the code, but to understand how transformers work under the hood.*
+*Remember: The goal isn't just to run the code, but to understand how transformers and LLMs work under the hood.*
+
+**Learn → Build → Teach → Repeat** 🚀
