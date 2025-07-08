@@ -98,6 +98,16 @@ Input Embeddings + Positional Encoding
 - **`attention.py`** - 🎨 **Attention visualization** (must-see!)
 - **`beam_search.py`** - Advanced decoding strategies
 
+### Educational Tools & Analysis 🎓
+- **`educational_examples.py`** - 📚 **Step-by-step concept explanations**
+- **`llm_playground.py`** - 🎮 **Interactive LLM experimentation**
+- **`llm_attention.py`** - 🔍 **LLM-specific attention visualization**
+- **`model_comparison.py`** - ⚖️ **Architecture comparison tool**
+
+### Dataset Preparation & Analysis 📊
+- **`dataset_preparation.py`** - 🛠️ **Complete dataset preprocessing pipeline**
+- **`data_examples.py`** - 📝 **Dataset structure examples for different domains**
+
 ### Additional Training Options
 - **`train_wb.py`** - Training with Weights & Biases integration
 - **`local_train.py`** - Local training setup
@@ -131,35 +141,127 @@ python -c "from train_llm import generate_text, torch;
 # Load your trained LLM and generate text"
 ```
 
-### 4. Visualize Attention (🔥 Cool!)
+### 4. Prepare Your Dataset (📊 Essential!)
+```bash
+# See dataset structure examples
+python data_examples.py
+
+# Prepare custom dataset
+python dataset_preparation.py
+```
+
+### 5. Explore Educational Tools (🎓 Learn!)
+```bash
+# Step-by-step concept explanations
+python educational_examples.py
+
+# Interactive LLM playground
+python llm_playground.py
+
+# LLM attention patterns
+python llm_attention.py
+
+# Compare architectures
+python model_comparison.py
+```
+
+### 6. Visualize Attention (🔥 Cool!)
 ```bash
 python attention.py
 ```
 
 ## 🧠 Key Educational Features
 
-### 1. **Multi-Head Attention Visualization**
-The `attention.py` script creates beautiful heatmaps showing:
-- **Self-attention** patterns in encoder and decoder
-- **Cross-attention** between source and target languages
-- How different attention heads learn different relationships
+### 1. **Complete Dataset Pipeline**
+- **`dataset_preparation.py`** - Full preprocessing pipeline with quality filtering
+- **`data_examples.py`** - Real dataset structure examples for 5+ domains
+- Text cleaning, tokenization, and quality analysis tools
 
-### 2. **Clear Mathematical Implementation**
+### 2. **Interactive Learning Tools**
+- **`educational_examples.py`** - Step-by-step concept walkthroughs
+- **`llm_playground.py`** - Real-time text generation experimentation
+- **`model_comparison.py`** - Side-by-side architecture analysis
+
+### 3. **Advanced Attention Visualization**
+- **`attention.py`** - Translation model attention patterns
+- **`llm_attention.py`** - LLM causal attention analysis
+- Interactive exploration of different layers and heads
+- Prompt vs generation attention comparison
+
+### 4. **Clear Mathematical Implementation**
 Every operation includes:
 - Tensor shape comments (e.g., `# (batch, seq_len, d_model)`)
 - Mathematical formulas from the paper
 - Step-by-step transformations
 
-### 3. **Educational Comments**
+### 5. **Educational Comments**
 ```python
 # Apply the attention formula: Attention(Q,K,V) = softmax(QK^T/√d_k)V
 attention_scores = (query @ key.transpose(-2, -1)) / math.sqrt(d_k)
 ```
 
-### 4. **Multiple Training Configurations**
+### 6. **Multiple Training Configurations**
 - Standard training with TensorBoard
 - Weights & Biases integration for experiment tracking
 - Local training for development
+
+### 7. **Architecture Comparison**
+Visual side-by-side comparison of:
+- Translation models vs LLMs
+- Parameter count analysis across model sizes
+- Task suitability comparisons
+- Computational complexity analysis
+
+## 📊 Dataset Preparation (Critical for Success!)
+
+**Dataset quality is THE most important factor for LLM performance.** This repository includes comprehensive tools for preparing high-quality training data:
+
+### **Dataset Structure Examples**
+```bash
+python data_examples.py
+```
+Shows 5 different dataset formats:
+- **General Text** - Books, articles, web content
+- **Code Generation** - Programming instruction-response pairs  
+- **Conversational** - Multi-turn chat data
+- **Instruction Following** - Task-oriented examples
+- **Domain-Specific** - Medical, legal, technical content
+
+### **Complete Preprocessing Pipeline**
+```bash
+python dataset_preparation.py
+```
+Full pipeline including:
+- **Text Analysis** - Character/word distributions, quality metrics
+- **Cleaning** - Remove URLs, normalize whitespace, filter low-quality
+- **Quality Filtering** - Repetition detection, language identification
+- **Tokenization** - BPE or WordLevel with custom vocabularies
+- **Dataset Creation** - Proper train/val/test splits with HuggingFace format
+
+### **Key Dataset Insights** 🎯
+1. **Quality > Quantity** - 10K high-quality examples beat 100K poor ones
+2. **Diversity Matters** - Mix sources, topics, and writing styles
+3. **Domain-Specific** - Adapt preprocessing for your target use case
+4. **Tokenization Strategy** - Choose BPE for efficiency, WordLevel for interpretability
+5. **Proper Splits** - Prevent overfitting with clean validation sets
+
+### **Example Usage**
+```python
+from dataset_preparation import DatasetPreparator
+
+# Initialize preparator
+prep = DatasetPreparator("my_dataset")
+
+# Analyze raw data
+analysis = prep.analyze_raw_text(my_texts)
+
+# Clean and filter
+cleaned = prep.quality_filter(my_texts)
+
+# Create tokenizer and dataset
+tokenizer = prep.create_tokenizer(cleaned, vocab_size=10000)
+datasets = prep.create_training_dataset(cleaned, tokenizer)
+```
 
 ## 🔧 Configuration
 
