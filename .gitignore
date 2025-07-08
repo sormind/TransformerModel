@@ -1,0 +1,41 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Model weights and checkpoints
+*.pt
+*.pth
+weights/
+opus_books_weights/
+
+# Dataset cache
+.cache/
+data/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and runs
+runs/
+logs/
+*.log
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Tokenizer files (can be regenerated)
+tokenizer_*.json 
